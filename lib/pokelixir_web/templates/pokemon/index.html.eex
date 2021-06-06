@@ -1,0 +1,28 @@
+<h1>Listing Pokemons</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for pokemon <- @pokemons do %>
+    <tr>
+      <td><%= pokemon.name %></td>
+      <td><%= pokemon.type %></td>
+
+      <td>
+        <span><%= link "Show", to: Routes.pokemon_path(@conn, :show, pokemon) %></span>
+        <span><%= link "Edit", to: Routes.pokemon_path(@conn, :edit, pokemon) %></span>
+        <span><%= link "Delete", to: Routes.pokemon_path(@conn, :delete, pokemon), method: :delete, data: [confirm: "Are you sure?"] %></span>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<span><%= link "New Pokemon", to: Routes.pokemon_path(@conn, :new) %></span>
